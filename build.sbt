@@ -171,7 +171,8 @@ lazy val userApi = (project in file("user-api"))
     version := "1.0-SNAPSHOT",
     libraryDependencies ++= Seq(
       lagomJavadslApi,
-      lombok
+      lombok,
+      lagomJavadslJackson
     )
   )
   .dependsOn(security, tools)
@@ -185,6 +186,8 @@ lazy val userImpl = (project in file("user-impl"))
   )
   .settings(
     version := "1.0-SNAPSHOT",
+    fork in run := true,
+    fork in runMain := true,
     libraryDependencies ++= Seq(
       lagomJavadslPersistenceCassandra,
       lagomJavadslTestKit,
